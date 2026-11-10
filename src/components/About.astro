@@ -1,0 +1,22 @@
+---
+import Photo from './Photo.astro';
+import { site, pillars } from '../data/site';
+---
+<section id="sobre" class="section">
+  <div class="wrap about">
+    <div class="about-photos reveal">
+      <Photo name="sobre-principal" label={`Equipe: ${site.owners}`} ratio="4/5" class="arch" sizes="(min-width: 960px) 480px, 90vw" />
+      <Photo name="logo" label="Foto de detalhe" ratio="1/1" class="about-sub" sizes="(min-width: 960px) 220px, 40vw" />
+    </div>
+    <div>
+      <span class="script reveal">Quem somos</span>
+      <h2 class="reveal">Organização que você <em>sente</em>, sem ver.</h2>
+      <div class="gold-divider reveal" aria-hidden="true"></div>
+      <p class="reveal">A AR Assessoria Cerimonial é conduzida por {site.owners} e atua em {site.city} ({site.state}) e região, cuidando de casamentos, festas e debutantes com atenção a cada etapa.</p>
+      <p class="reveal">Planejamos antes, coordenamos durante e resolvemos imprevistos no momento em que surgem. O resultado é um evento fluido, no horário e fiel ao que você imaginou.</p>
+      <ul class="pillars">
+        {pillars.map((p, i) => <li class="reveal" style={`--d:${i * 0.1}s`}><h3>{p.title}</h3><p>{p.text}</p></li>)}
+      </ul>
+    </div>
+  </div>
+</section>

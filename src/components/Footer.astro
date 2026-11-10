@@ -1,0 +1,21 @@
+---
+import { site } from '../data/site';
+---
+<footer class="footer">
+  <div class="wrap footer-grid">
+    <div>
+      <img src="/images/logo-branco.png" alt={site.name} width="110" height="87" loading="lazy" />
+      <p class="fine">Celebrações organizadas com carinho, do primeiro contato ao último abraço.</p>
+    </div>
+    <nav aria-label="Rodapé"><h3>Páginas</h3><a href="#sobre">Sobre</a><a href="#servicos">Serviços</a><a href="#portfolio">Portfólio</a><a href="#depoimentos">Depoimentos</a></nav>
+    <div><h3>Contato</h3>
+      <a href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noopener noreferrer">WhatsApp {site.phoneDisplay}</a>
+      <a href={site.instagram} target="_blank" rel="noopener noreferrer">Instagram {site.instagramHandle}</a>
+      <span>{site.city}-{site.state} e região</span>
+    </div>
+  </div>
+  <p class="wrap copy">© {new Date().getFullYear()} {site.name}. Todos os direitos reservados.</p>
+</footer>
+<a class="float-wa" href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><span>WhatsApp</span>
+</a>

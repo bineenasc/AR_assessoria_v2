@@ -1,0 +1,13 @@
+FOTOS DO SITE (otimizadas automaticamente no build: WebP, vários tamanhos)
+
+Salve cada foto AQUI com o nome abaixo (.jpg, .jpeg, .png, .webp ou .avif).
+Enquanto o arquivo não existir, o site mostra um quadro branco "Foto aqui".
+Dica: no computador, passe o mouse sobre o quadro para ver o nome do arquivo.
+Use fotos de boa qualidade (a partir de 1600 px de largura): o Astro reduz sozinho.
+
+Topo ......... hero-principal
+Sobre ........ sobre-principal, sobre-detalhe
+Serviços ..... servico-completa, servico-parcial, servico-dia, servico-festas
+Portfólio .... gabriel-gisele, bruno-aline, kauanny-mateus, heloisa-debutante,
+               amanda-marcos, maria-clara-10-anos, vitoria-elizandro
+Instagram .... insta-1, insta-2, insta-3, insta-4, insta-5, insta-6

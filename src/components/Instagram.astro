@@ -1,0 +1,44 @@
+---
+import Photo from "./Photo.astro";
+import SectionHead from "./SectionHead.astro";
+import { site } from "../data/site";
+import { instagramPosts } from "../data/site";
+---
+
+<section class="section insta" aria-label="Instagram">
+  <div class="wrap">
+    <SectionHead
+      script="No Instagram"
+      title={`Siga nossa jornada <em>${site.instagramHandle}</em>`}
+      center
+    />
+    <ul class="insta-grid">
+      {
+        instagramPosts.map((post, i) => (
+          <li class="reveal" style={`--d:${(i % 3) * 0.06}s`}>
+            <a
+              href={post.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Ver publicação ${i + 1} no Instagram`}
+            >
+              <Photo
+                name={post.image}
+                label={`Publicação ${i + 1} do Instagram`}
+                ratio="1/1"
+                sizes="(min-width: 600px) 180px, 33vw"
+              />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <p class="center-btn">
+      <a
+        class="btn btn-line"
+        href={site.instagram}
+        target="_blank"
+        rel="noopener noreferrer">Ver mais no Instagram</a>
+    </p>
+  </div>
+</section>

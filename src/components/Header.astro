@@ -1,0 +1,18 @@
+---
+import { site, waLink } from '../data/site';
+const links = [['#sobre','Sobre'],['#servicos','Serviços'],['#portfolio','Portfólio'],['#depoimentos','Depoimentos'],['#duvidas','Dúvidas']];
+---
+<div id="progress" aria-hidden="true"></div>
+<header class="header">
+  <div class="wrap header-in">
+    <a class="brand" href="#topo" aria-label={`${site.name} - início`}>
+      <img src="/images/logo-marca.png" alt="" width="68" height="40" />
+      <span>Assessoria<br />Cerimonial</span>
+    </a>
+    <button class="menu-btn" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu"><span></span><span></span><span></span></button>
+    <nav id="menu" aria-label="Principal">
+      {links.map(([h, l]) => <a href={h}>{l}</a>)}
+      <a class="btn btn-gold btn-sm" href={waLink} target="_blank" rel="noopener noreferrer">Agende uma conversa</a>
+    </nav>
+  </div>
+</header>

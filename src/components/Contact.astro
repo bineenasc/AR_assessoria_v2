@@ -1,0 +1,15 @@
+---
+import { site, waLink } from '../data/site';
+---
+<section id="contato" class="contact">
+  <div class="wrap">
+    <span class="script reveal">Vamos começar</span>
+    <h2 class="reveal">A sua celebração perfeita começa com <em>uma conversa.</em></h2>
+    <div class="gold-divider center reveal" aria-hidden="true"></div>
+    <p class="reveal">Conte o tipo de evento, a data prevista, a cidade e o número de convidados. Atendemos em {site.city}-{site.state} e região.</p>
+    <div class="actions center reveal">
+      <a class="btn btn-gold" href={waLink} target="_blank" rel="noopener noreferrer">Agendar conversa inicial</a>
+      <a class="btn btn-outline" href={site.instagram} target="_blank" rel="noopener noreferrer">Ver o Instagram</a>
+    </div>
+  </div>
+</section>

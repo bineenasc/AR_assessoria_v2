@@ -1,0 +1,16 @@
+---
+import SectionHead from './SectionHead.astro';
+import { steps, waLink } from '../data/site';
+---
+<section id="processo" class="section dark">
+  <div class="wrap">
+    <SectionHead script="Nosso jeito de trabalhar" title="Como funciona <em>nosso trabalho</em>" text="Um processo para você se sentir tranquila em cada etapa, do primeiro contato ao último abraço." />
+    <ol class="steps">
+      {steps.map((s, i) => <li class="reveal" style={`--d:${i * 0.1}s`}><span class="n" aria-hidden="true">0{i + 1}</span><h3>{s.title}</h3><p>{s.text}</p></li>)}
+    </ol>
+    <div class="closing reveal">
+      <p class="quote">Você vive o momento.<br />Nós cuidamos do resto.</p>
+      <a class="btn btn-gold" href={waLink} target="_blank" rel="noopener noreferrer">Agendar conversa inicial</a>
+    </div>
+  </div>
+</section>

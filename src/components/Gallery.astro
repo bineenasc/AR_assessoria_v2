@@ -1,0 +1,20 @@
+---
+import Photo from './Photo.astro';
+import SectionHead from './SectionHead.astro';
+import { gallery } from '../data/site';
+---
+<section id="portfolio" class="section">
+  <div class="wrap">
+    <SectionHead script="Nosso portfólio" title="Histórias que <em>criamos juntos</em>" text="Cada evento é único. Alguns dos momentos que a gente teve a honra de organizar." />
+    <ul class="masonry">
+      {gallery.map((g, i) => (
+        <li class="reveal" style={`--d:${(i % 3) * 0.08}s`}>
+          <figure>
+            <Photo name={g.file} label={g.name} ratio={g.ratio} sizes="(min-width: 600px) 360px, 50vw" />
+            <figcaption><strong>{g.name}</strong><span>{g.kind}</span></figcaption>
+          </figure>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

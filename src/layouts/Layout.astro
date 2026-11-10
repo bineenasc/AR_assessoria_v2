@@ -1,0 +1,93 @@
+---
+import '../styles/global.css';
+import { site } from '../data/site';
+interface Props { title?: string; description?: string }
+const { title = `${site.name} | Casamentos, festas e debutantes em ${site.city} - ${site.state}`, description = site.description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = new URL('/images/og-share.png', Astro.site).href;
+const ld = {
+  '@context': 'https://schema.org', '@type': 'EventPlanner', name: site.name, url: Astro.site?.href, description: site.description,
+  image: ogImage, telephone: '+' + site.whatsapp, areaServed: `${site.city}, ${site.state}, Brasil`,
+  address: { '@type': 'PostalAddress', addressLocality: site.city, addressRegion: site.state, addressCountry: 'BR' },
+  sameAs: [site.instagram],
+};
+---
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={site.name} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&family=Jost:wght@300;400;500;600&display=swap" />
+    <script is:inline>document.documentElement.classList.add('js')</script>
+    <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+  </head>
+  <body>
+    <a class="skip" href="#conteudo">Ir para o conteúdo</a>
+    <slot />
+    <script>
+      const btn = document.querySelector<HTMLButtonElement>('.menu-btn');
+      const nav = document.getElementById('menu');
+      const closeMenu = () => { btn?.setAttribute('aria-expanded', 'false'); nav?.classList.remove('open'); };
+      btn?.addEventListener('click', () => {
+        const open = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!open));
+        nav?.classList.toggle('open', !open);
+      });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+      nav?.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeMenu));
+
+      const header = document.querySelector('.header');
+      const bar = document.getElementById('progress');
+      const fab = document.querySelector('.float-wa');
+      const hero = document.getElementById('topo');
+      const onScroll = () => {
+        const y = window.scrollY;
+        header?.classList.toggle('scrolled', y > 10);
+        const h = document.documentElement.scrollHeight - window.innerHeight;
+        if (bar) bar.style.transform = `scaleX(${h > 0 ? y / h : 0})`;
+        fab?.classList.toggle('show', y > (hero ? hero.offsetHeight * 0.7 : 400));
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      const els = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const io = new IntersectionObserver((entries) => entries.forEach((e) => {
+          if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        }), { threshold: 0.12 });
+        els.forEach((el) => io.observe(el));
+      } else els.forEach((el) => el.classList.add('in'));
+
+      document.querySelectorAll<HTMLElement>('[data-carousel]').forEach((c) => {
+        const track = c.querySelector<HTMLElement>('.track');
+        c.querySelectorAll<HTMLElement>('[data-dir]').forEach((b) => b.addEventListener('click', () => {
+          const card = track?.querySelector('figure');
+          const step = card ? card.getBoundingClientRect().width + 16 : 300;
+          track?.scrollBy({ left: Number(b.dataset.dir) * step, behavior: 'smooth' });
+        }));
+      });
+    </script>
+  </body>
+</html>

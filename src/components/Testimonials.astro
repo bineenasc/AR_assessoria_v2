@@ -1,0 +1,72 @@
+---
+import SectionHead from "./SectionHead.astro";
+import { testimonials } from "../data/site";
+const initials = (n: string) =>
+  n
+    .replace(/^(Família da|Dani,)\s*/, "")
+    .trim()
+    .charAt(0)
+    .toUpperCase();
+---
+
+<section id="depoimentos" class="section tint">
+  <div class="wrap" data-carousel>
+    <div class="head-row">
+      <SectionHead
+        script="Depoimentos"
+        title="O que nossos clientes <em>dizem</em>"
+        text="Mensagens reais de quem viveu o grande dia com a gente."
+      />
+      <div class="arrows">
+        <button type="button" data-dir="-1" aria-label="Depoimento anterior"
+          >&larr;</button
+        >
+        <button type="button" data-dir="1" aria-label="Próximo depoimento"
+          >&rarr;</button
+        >
+      </div>
+    </div>
+    <div
+      class="track"
+      tabindex="0"
+      role="region"
+      aria-label="Depoimentos de clientes"
+    >
+      {
+        testimonials.map((t) => (
+          <figure>
+            <span class="mark" aria-hidden="true">
+              &ldquo;
+            </span>
+            <blockquote>
+              <p>{t.text}</p>
+            </blockquote>
+            <figcaption>
+              <span class="avatar" aria-hidden="true">
+                {initials(t.author)}
+              </span>
+
+              <span class="testimonial-person">
+                <strong>{t.author}</strong>
+
+                <em>{t.kind}</em>
+
+                {t.instagram && (
+                  <a
+                    href={`https://www.instagram.com/${t.instagram.replace(/^@/, "")}/`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="testimonial-instagram"
+                    aria-label={`Ver Instagram de ${t.author}`}
+                  >
+                    @{t.instagram.replace(/^@/, "")}
+                  </a>
+                )}
+              </span>
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,20 @@
+{
+  "name": "ar-assessoria-cerimonial-v2",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Landing page da AR Assessoria Cerimonial (Astro, site estático para Cloudflare Pages)",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^7.4.5"
+  }
+}

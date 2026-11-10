@@ -1,0 +1,11 @@
+---
+// Cabeçalho padrão de seção: letra manuscrita dourada, título, divisor dourado e texto opcional.
+interface Props { script: string; title: string; text?: string; center?: boolean }
+const { script, title, text, center = false } = Astro.props;
+---
+<div class={`head${center ? ' center' : ''}`}>
+  <span class="script reveal">{script}</span>
+  <h2 class="reveal" set:html={title} />
+  <div class="gold-divider reveal" aria-hidden="true"></div>
+  {text && <p class="reveal">{text}</p>}
+</div>

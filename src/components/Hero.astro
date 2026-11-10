@@ -1,0 +1,38 @@
+---
+import Photo from './Photo.astro';
+import { site, waLink, roteiro, ticker } from '../data/site';
+
+// Título dividido em palavras: cada uma entra com um pequeno atraso (efeito de escrita).
+const words = [
+  ...'Cada detalhe do seu grande dia, nas mãos de quem cuida'.split(' ').map((w) => ({ w, em: false })),
+  ...'com carinho.'.split(' ').map((w) => ({ w, em: true })),
+];
+---
+<section class="hero" id="topo">
+  <div class="wrap hero-in">
+    <div class="hero-text">
+      <span class="script reveal">Casamentos, debutantes e festas</span>
+      <h1>{words.map((x, i) => (<><span class={`w${x.em ? ' em' : ''}`} style={`--i:${i}`}>{x.w}</span>{' '}</>))}</h1>
+      <p class="lead reveal" style="--d:.5s">Assessoria e cerimonial em {site.city}-{site.state} e região. Planejamos, organizamos e coordenamos tudo para você viver o momento com leveza.</p>
+      <div class="actions reveal" style="--d:.65s">
+        <a class="btn btn-gold" href={waLink} target="_blank" rel="noopener noreferrer">Solicitar orçamento no WhatsApp</a>
+        <a class="btn btn-line" href="#portfolio">Ver portfólio</a>
+      </div>
+    </div>
+    <div class="hero-visual reveal" style="--d:.3s">
+      <span class="orb" aria-hidden="true"></span>
+      <Photo name="hero-principal" label="Foto principal: casal ou noiva" ratio="4/5" eager class="arch hero-main" sizes="(min-width: 960px) 520px, 90vw" />
+      <aside class="program" aria-label="Exemplo de roteiro de um evento">
+        <p class="program-title">{roteiro.title}</p>
+        <ol>{roteiro.items.map((t) => <li><time>{t.time}</time><span>{t.label}</span></li>)}</ol>
+        <p class="program-note">{roteiro.note}</p>
+      </aside>
+    </div>
+  </div>
+  <a class="scroll-hint" href="#sobre" aria-label="Rolar para baixo"><span>Rolar</span><i></i></a>
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-in">
+      {[0, 1, 2, 3].map(() => ticker.map((t) => <span>{t}</span>))}
+    </div>
+  </div>
+</section>

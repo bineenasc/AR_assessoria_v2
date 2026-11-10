@@ -1,0 +1,24 @@
+---
+import Photo from './Photo.astro';
+import SectionHead from './SectionHead.astro';
+import { services, waLink } from '../data/site';
+---
+<section id="servicos" class="section tint">
+  <div class="wrap">
+    <SectionHead script="Nossos serviços" title="Escolha o apoio ideal para o <em>seu evento</em>" text="Do planejamento completo à coordenação no dia. Falamos com você para montar o formato certo." />
+    <ul class="cards">
+      {services.map((s, i) => (
+        <li class="card reveal" style={`--d:${(i % 2) * 0.1}s`}>
+          <Photo name={s.photo} label={`Foto: ${s.title}`} ratio="4/3" sizes="(min-width: 960px) 260px, (min-width: 600px) 45vw, 100vw" />
+          <div class="card-body">
+            <span class="tag">{s.tag}</span>
+            <h3>{s.title}</h3>
+            <p>{s.text}</p>
+            <ul class="checks">{s.list.map((l) => <li>{l}</li>)}</ul>
+            <a class="link" href={waLink} target="_blank" rel="noopener noreferrer">Quero saber mais</a>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
